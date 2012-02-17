@@ -750,7 +750,7 @@ function eoddata_top_10_gains($exchange){
 }
 
 /**
- * Top10Losses SOAP CALL
+ * Top10Losses SOAP Call
  * @param unknown_type $exchange
  */
 function eoddata_top_10_losses($exchange){
@@ -773,6 +773,36 @@ function eoddata_top_10_losses($exchange){
 	# prepare final list
 	$final_list = prepare_final_list($list_raw);
 	return $final_list;
+}
+
+# UpdateDataFormat 
+
+
+# ValidateAccess 
+/**
+ * ValidateAccess SOAP Call
+ * @param string $exchange
+ * @param string $symbol
+ * @param integer $month
+ * @param integer $day
+ * @param integer $year
+ * @param mixed $period
+ * @return boolean
+ */
+function eoddata_validate_access($exchange, $symbol, $month, $day, $year, $period){
+	global $client;
+	# SOAP Call
+	$param = array('Token' => MAHIWAGANG_TOKEN, 'Exchange' => $exchange,
+			'Symbol' => $symbol,
+			'QuoteDate' => date("Ymd", mktime(0, 0, 0, $month, $day, $year)),
+			'Period' => $period);
+	$result = $client->call('ValidateAccess', array('parameters' => $param), '', '', false, true);
+
+	if ($client->fault) return 'Fault';		// Check for a fault
+	$err = $client->getError();				// Check for errors
+	if($err) return 'Error: ' . $err;
+	$message = $result['ValidateAccessResult']['!Message'];
+	return ($message !== "Success");
 }
 
 ######################
@@ -878,5 +908,5 @@ function debug($res){
 // debug( eoddata_login2('eoddatahappyday','eoddatahappyday', $version) );
 // debug( eoddata_membership());     
 // debug( eoddata_quote_list2('NASDAQ', 'MSFT') );
-debug(eoddata_top_10_losses('NASDAQ'));
+debug(eoddata_validate_access("NASDAQ", "MSFT", 1, 1, 2011, "m") );
 ?>
