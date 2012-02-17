@@ -49,6 +49,10 @@ function eoddata_country_list(){
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
 	
+	# Check API Call's result
+	$message = $result['CountryListResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
+	
 	# reaching this line means no fault and zero error 
 	$list_raw = $result['CountryListResult']['COUNTRIES']['CountryBase'];	
 	
@@ -66,9 +70,15 @@ function eoddata_data_client_latest_version(){
 	# SOAP Call
 	$param = array('Token' => MAHIWAGANG_TOKEN);
 	$result = $client->call('DataClientLatestVersion', array('parameters' => $param), '', '', false, true);	
+	
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;	
+	
+	# Check API Call's result
+	$message = $result['DataClientLatestVersionResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
+	
 	$version = $result['DataClientLatestVersionResult']['VERSION'];
 	return $version;
 }
@@ -104,6 +114,10 @@ function eoddata_exchange_get($exchange){
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
 	
+	# Check API Call's result
+	$message = $result['ExchangeGetResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
+	
 	# reaching this line means no fault and zero error
 	$data_raw = $result['ExchangeGetResult']['EXCHANGE'];
 	
@@ -126,6 +140,10 @@ function eoddata_exchange_list(){
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
 	
+	# Check API Call's result
+	$message = $result['ExchangeListResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
+	
 	# reaching this line means no fault and zero error
 	$list_raw = $result['ExchangeListResult']['EXCHANGES']['EXCHANGE'];	
 	
@@ -144,9 +162,15 @@ function eoddata_exchange_months($exchange){
 	# SOAP Call
 	$param = array('Token' => MAHIWAGANG_TOKEN, 'Exchange' => $exchange);
 	$result = $client->call('ExchangeMonths', array('parameters' => $param), '', '', false, true);
+	
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
+	
+	# Check API Call's result
+	$message = $result['ExchangeMonthsResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
+	
 	$months = $result['ExchangeMonthsResult']['MONTHS'];
 	return $months;
 }
@@ -165,6 +189,10 @@ function eoddata_fundamental_list($exchange){
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
+	
+	# Check API Call's result
+	$message = $result['FundamentalListResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
 	
 	# reaching this line means no fault and zero error
 	$list_raw = $result['FundamentalListResult']['FUNDAMENTALS']['FUNDAMENTAL'];
@@ -188,6 +216,10 @@ function eoddata_login($username, $password){
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
+	
+// 	# Check API Call's result
+// 	$message = $result['LoginResult']['!Message'];
+// 	if($message !== 'Success') return 'Message: ' . $message;
 	
 	# reaching this line means no fault and zero error
 	$data_raw = $result['LoginResult'];
@@ -213,6 +245,10 @@ function eoddata_login2($username, $password, $version){
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
 	
+// 	# Check API Call's result
+// 	$message = $result['Login2Result']['!Message'];
+// 	if($message !== 'Success') return 'Message: ' . $message;
+	
 	# reaching this line means no fault and zero error
 	$data_raw = $result['Login2Result'];
 	
@@ -230,9 +266,15 @@ function eoddata_membership(){
 	# SOAP Call
 	$param = array('Token' => MAHIWAGANG_TOKEN);
 	$result = $client->call('Membership', array('parameters' => $param), '', '', false, true);
+	
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
+	
+	# Check API Call's result
+	$message = $result['MembershipResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
+	
 	$membership = $result['MembershipResult']['MEMBERSHIP'];
 	return $membership;
 }
@@ -251,6 +293,10 @@ function eoddata_quote_get($exchange, $symbol){
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
+	
+	# Check API Call's result
+	$message = $result['QuoteGetResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
 	
 	# reaching this line means no fault and zero error
 	$data_raw = $result['QuoteGetResult']['QUOTE'];
@@ -274,6 +320,10 @@ function eoddata_quote_list($exchange){
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
 	
+	# Check API Call's result
+	$message = $result['QuoteListResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
+	
 	# reaching this line means no fault and zero error
 	$list_raw = $result['QuoteListResult']['QUOTES']['QUOTE'];
 	
@@ -296,6 +346,10 @@ function eoddata_quote_list2($exchange, $symbols){
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
+	
+	# Check API Call's result
+	$message = $result['QuoteList2Result']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
 	
 	# reaching this line means no fault and zero error
 	$data_raw = $result['QuoteList2Result']['QUOTES']['QUOTE'];
@@ -323,6 +377,10 @@ function eoddata_quote_list_by_date($exchange, $month, $day, $year){
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
 	
+	# Check API Call's result
+	$message = $result['QuoteListByDateResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
+	
 	# reaching this line means no fault and zero error
 	$list_raw = $result['QuoteListByDateResult']['QUOTES']['QUOTE'];
 	
@@ -348,6 +406,10 @@ function eoddata_quote_list_by_date2($exchange, $month, $day, $year){
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
+	
+	# Check API Call's result
+	$message = $result['QuoteListByDate2Result']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
 	
 	# reaching this line means no fault and zero error
 	$list_raw = $result['QuoteListByDate2Result']['QUOTES2']['QUOTE2'];
@@ -377,6 +439,10 @@ function eoddata_quote_list_by_date_period($exchange, $month, $day, $year, $peri
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
 	
+	# Check API Call's result
+	$message = $result['QuoteListByDatePeriodResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
+	
 	$data_raw = $result['QuoteListByDatePeriodResult']['QUOTES']['QUOTE'];
 	
 	# prepare final data
@@ -404,6 +470,10 @@ function eoddata_quote_list_by_date_period2($exchange, $month, $day, $year, $per
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
 	
+	# Check API Call's result
+	$message = $result['QuoteListByDatePeriod2Result']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
+	
 	$data_raw = $result['QuoteListByDatePeriod2Result']['QUOTES2']['QUOTE2'];
 	
 	# prepare final data
@@ -424,6 +494,10 @@ function eoddata_split_list_by_exchange($exchange){
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
+	
+	# Check API Call's result
+	$message = $result['SplitListByExchangeResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
 	
 	# reaching this line means no fault and zero error
 	$list_raw = $result['SplitListByExchangeResult']['SPLITS']['SPLIT'];
@@ -446,6 +520,11 @@ function eoddata_split_list_by_symbol($exchange, $symbol){
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
+	
+	# Check API Call's result
+	$message = $result['SplitListBySymbolResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
+	
 	debug($result);exit;
 	# reaching this line means no fault and zero error
 // 	$list_raw = $result['SplitListBySymbolResult']['SYMBOLS']['SYMBOL'];
@@ -469,6 +548,10 @@ function eoddata_symbol_changes_by_exchange($exchange){
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
+	
+	# Check API Call's result
+	$message = $result['SymbolChangesByExchangeResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
 	
 	# reaching this line means no fault and zero error
 	$list_raw = $result['SymbolChangesByExchangeResult']['SYMBOLCHANGES']['SYMBOLCHANGE'];
@@ -494,6 +577,10 @@ function eoddata_symbol_chart($exchange, $symbol){
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
 	
+	# Check API Call's result
+	$message = $result['SymbolChartResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
+	
 	# reaching this line means no fault and zero error
 	$chart = $result['SymbolChartResult']['CHART'];
 	return $chart;
@@ -515,6 +602,10 @@ function eoddata_symbol_get($exchange, $symbol){
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
 	
+	# Check API Call's result
+	$message = $result['SymbolGetResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
+	
 	# reaching this line means no fault and zero error
 	$data_raw = $result['SymbolGetResult']['SYMBOL'];
 	
@@ -522,17 +613,6 @@ function eoddata_symbol_get($exchange, $symbol){
 	$final_data = prepare_final_data( $data_raw );
 	return $final_data;
 }
-
-# TODO
-# SymbolHistoryPeriod SOAP Call
-# SymbolHistoryPeriodByDateRange SOAP Call
-# SymbolList SOAP Call
-# SymbolList2 SOAP Call
-# TechnicalList SOAP Call
-# Top10Gains SOAP Call
-# Top10Losses SOAP Call
-# UpdateDataFormat SOAP Call
-# ValidateAccess SOAP Call
 
 /**
  * SymbolHistory SOAP Call
@@ -554,6 +634,10 @@ function eoddata_symbol_history($exchange, $symbol, $month, $day, $year){
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
+	
+	# Check API Call's result
+	$message = $result['SymbolHistoryResult']['!Message'];
+	if($message !== 'Success') return 'Message: ' . $message;
 	
 	# reaching this line means no fault and zero error
 	$list_raw = $result['SymbolHistoryResult']['QUOTES']['QUOTE'];
@@ -585,10 +669,10 @@ function eoddata_symbol_history_period($exchange, $symbol, $month, $day, $year, 
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
+	
+	# Check API Call's result
 	$message = $result['SymbolHistoryPeriodResult']['!Message'];
-	if($message === "You are not permitted to access this exchange"){
-		return 'Message: ' . $message;
-	}
+	if($message !== 'Success') return 'Message: ' . $message;
 	
 	# reaching this line means no fault and zero error
 	$list_raw = $result['SymbolHistoryPeriodResult']['QUOTES']['QUOTE'];
@@ -632,10 +716,10 @@ function eoddata_symbol_history_period_by_date_range($exchange,
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
+	
+	# Check API Call's result
 	$message = $result['SymbolHistoryPeriodByDateRangeResult']['!Message'];
-	if($message === "You are not permitted to access this exchange"){
-		return 'Message: ' . $message;
-	}
+	if($message !== 'Success') return 'Message: ' . $message;
 	
 	# reaching this line means no fault and zero error
 	$list_raw = $result['SymbolHistoryPeriodByDateRangeResult']['QUOTES']['QUOTE'];
@@ -658,9 +742,10 @@ function eoddata_symbol_list($exchange){
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
-	# Check code's validity
+		
+	# Check API Call's result
 	$message = $result['SymbolListResult']['!Message'];
-	if($message === 'Invalid Exchange Code') return 'Message: ' . $message;
+	if($message !== 'Success') return 'Message: ' . $message;
 	
 	# reaching this line means no fault and zero error
 	$list_raw = $result['SymbolListResult']['SYMBOLS']['SYMBOL'];
@@ -685,9 +770,9 @@ function eoddata_symbol_list2($exchange){
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
 	
-	# Check code's validity
+	# Check API Call's result
 	$message = $result['SymbolList2Result']['!Message'];
-	if($message === 'Invalid Exchange Code') return 'Message: ' . $message;
+	if($message !== 'Success') return 'Message: ' . $message;
 	
 	# reaching this line means no fault and zero error
 	$list_raw = $result['SymbolList2Result']['SYMBOLS2']['SYMBOL2'];
@@ -711,9 +796,10 @@ function eoddata_technical_list($exchange){
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
-	# Check code's validity
+	
+	# Check API Call's result
 	$message = $result['TechnicalListResult']['!Message'];
-	if($message === 'Invalid Exchange Code') return 'Message: ' . $message;
+	if($message !== 'Success') return 'Message: ' . $message;
 
 	# reaching this line means no fault and zero error
 	$list_raw = $result['TechnicalListResult']['TECHNICALS']['TECHNICAL'];
@@ -737,7 +823,7 @@ function eoddata_top_10_gains($exchange){
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
 	
-	# Check code's validity
+	# Check API Call's result
 	$message = $result['Top10GainsResult']['!Message'];
 	if($message !== 'Success') return 'Message: ' . $message;
 
@@ -763,7 +849,7 @@ function eoddata_top_10_losses($exchange){
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
 
-	# Check code's validity
+	# Check API Call's result
 	$message = $result['Top10LossesResult']['!Message'];
 	if($message !== 'Success') return 'Message: ' . $message;
 
@@ -801,6 +887,7 @@ function eoddata_validate_access($exchange, $symbol, $month, $day, $year, $perio
 	if ($client->fault) return 'Fault';		// Check for a fault
 	$err = $client->getError();				// Check for errors
 	if($err) return 'Error: ' . $err;
+	
 	$message = $result['ValidateAccessResult']['!Message'];
 	return ($message !== "Success");
 }
